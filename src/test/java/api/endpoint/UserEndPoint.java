@@ -26,9 +26,9 @@ public class UserEndPoint {
 
 	}
 
-	public static Response updateUser(String userName, User payload) {
+	public static Response updateUser(String userName, int i) {
 		Response response = given().contentType(ContentType.JSON).accept(ContentType.JSON)
-				.pathParam("username", userName).body(payload).when().put(Routes.update_url);
+				.pathParam("username", userName).body(i).when().put(Routes.update_url);
 
 		return response;
 

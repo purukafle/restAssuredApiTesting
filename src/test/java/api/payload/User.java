@@ -62,6 +62,10 @@ public class User {
 	public void setUserStatus(int userStatus) {
 		this.userStatus = userStatus;
 	}
+	public String getStatusCode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }
