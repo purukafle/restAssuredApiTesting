@@ -1,10 +1,12 @@
 package api.utilities;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -33,6 +35,38 @@ public class XlUtility {
 		fi.close();
 		return towCount;
 	}
+	public int getCellCount(String sheetName, int rownum) throws IOException {
+		
+		fi=new FileInputStream(path);
+		workbook=new XSSFWorkbook(fi);
+		sheet=workbook.getSheet(sheetName);
+		row=sheet.getRow(rownum);
+		int cellcount=row.getLastCellNum();
+		workbook.close();
+		
+		return cellcount;
+		
+	}
+	public String getCellData(String sheetName, int rownum, int cloumn) throws IOException {
+		fi=new FileInputStream(path);
+		workbook=new XSSFWorkbook(fi);
+		sheet=workbook.getSheet(sheetName);
+		row=sheet.getRow(rownum);
+		cell=row.getCell(cloumn);
+		DataFormatter formatter=new DataFormatter();
+		String data;
+		try {
+			data=formatter.formatCellValue(cell);
+			
+		} catch (Exception e) {
+			data="";
+		}
+		workbook.close();
+		fi.close();
+		return data;
+		
+	}
+	
 	
 
 }
